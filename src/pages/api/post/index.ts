@@ -43,7 +43,7 @@ async function handler(
     else if (req.method === "POST") {
       const { content, imageUrl = '' } = req.body;
 
-      if (!content && !imageUrl) {
+      if (!content || !imageUrl) {
         return res.status(400).json({ message: "Bad Request" });
       }
 
