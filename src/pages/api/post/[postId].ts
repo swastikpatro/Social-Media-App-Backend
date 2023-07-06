@@ -47,7 +47,7 @@ async function handler(
         else if (req.method === "PATCH") {
             // GET UPDATED CONTENT FROM BODY
             const { content, imageUrl = '' } = req.body;
-            if (!content && !imageUrl) return res.status(400).json({ message: "Content or Media is required" });
+            if (!content || !imageUrl) return res.status(400).json({ message: "Content or Media is required" });
 
             // UPDATE POST BY ID
             const post = await Post.findById(postId);
