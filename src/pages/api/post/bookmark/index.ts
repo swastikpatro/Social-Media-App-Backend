@@ -42,8 +42,8 @@ async function handler(
 
         // Get bookmarked posts from POSTS collection
         const bookmarkedPosts = await Post.find({ _id: { $in: bookmarks } }).populate([
-            { path: "author", select: "_id firstName lastName pic username" },
-            { path: "comments.user", select: "_id firstName lastName pic username" },
+            { path: "author", select: "_id firstName lastName verified pic username" },
+            { path: "comments.user", select: "_id firstName lastName verified pic username" },
         ]);
 
         if (bookmarkedPosts.length === 0) return res.status(200).json({ bookmarks: [], message: "No bookmarks" });
@@ -59,8 +59,8 @@ async function handler(
 async function getPosts() {
     const posts = await Post.find({})
         .populate([
-            { path: "author", select: "_id firstName lastName pic username" },
-            { path: "comments.user", select: "_id firstName lastName pic username" },
+            { path: "author", select: "_id firstName lastName verified pic username" },
+            { path: "comments.user", select: "_id firstName lastName verified pic username" },
         ])
         .sort({ createdAt: -1 }); // -1: DESC, 1: ASC
     return posts;
