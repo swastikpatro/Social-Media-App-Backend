@@ -35,7 +35,7 @@ async function handler(
 
         // UPDATE USER BY ID
         // GET DATA FROM BODY
-        const { firstName, lastName, username, email, link, bio, pic } = req.body;
+        const { firstName, lastName, username, email, link, bio, pic, verified } = req.body;
         // UPDATE USER BY ID
         const user = await getUserById(userId);
         if (!user) return res.status(404).json({ message: "User not found" });
@@ -48,6 +48,7 @@ async function handler(
             link,
             bio,
             pic,
+            verified,
             updatedAt: new Date()
         });
 
